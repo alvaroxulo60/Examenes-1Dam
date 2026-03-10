@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 import exceptions.MazoException;
 import models.Cromo;
+import models.Escudo;
 import models.Jugador;
+import models.Mazo;
 
 public class Principal {
 
@@ -84,7 +86,7 @@ public class Principal {
                         String nombreCromoDelOtro = sc.nextLine();
                         Cromo cromoDelOtro = get(nombreCromoDelOtro);
 
-                        m1.intercambiar(cromoParaCambiar, cromoDelOtro);
+                        m1.intercambiarCromo(cromoParaCambiar, cromoDelOtro);
 
                         /*
                          * Aqu� habr�a que "restar" ese cromo del mazo 2, pero obviaremos esto para
@@ -95,15 +97,15 @@ public class Principal {
                         break;
                     case 3:
                         System.out.println("Mezclando m1 con m2");
-                        m1.mezclar(m2);
+                        m1.mezclarMazo(m2);
                         break;
                     case 4:
-                        System.out.println("Actualmente tienes " + m1.contarDiferentes() + " cromos diferentes");
+                        System.out.println("Actualmente tienes " + m1.contarCromosDistintos() + " cromos diferentes");
                         break;
                     case 5:
                         System.out.println("�De qu� equipo quieres mostrar los cromos?: ");
                         String equipoMostrar = sc.nextLine();
-                        m1.cromosDeUnEquipo(equipoMostrar).stream().forEach(System.out::println);
+                        m1.cromosQueSonDeUnEquipo(equipoMostrar).stream().forEach(System.out::println);
                         break;
                     case 6:
                         System.out.println("�De qu� equipo quieres mostrar la altura media?: ");

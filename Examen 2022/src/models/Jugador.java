@@ -4,13 +4,16 @@ public class Jugador extends Cromo{
 
     private String nombre;
     private String equipo;
-    private int altura;
+    private double altura;
 
-    public Jugador(int id, String nombre, String equipo, int altura) {
-        super(id);
-        this.nombre = nombre;
+    public Jugador(int id, String nombre, String equipo, double altura) {
+        super(id,nombre);
         this.equipo =  equipo;
         this.altura = altura;
 
+    }
+
+    public String getEquipo() {
+        return equipo;
     }
 }
