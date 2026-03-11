@@ -61,12 +61,12 @@ public class Principal {
         while (!fin) {
             try {
                 System.out.println(menu());
-                System.out.print("\n�Qu� desea hacer?: ");
+                System.out.print("\n¿Qué desea hacer?: ");
                 int op = Integer.parseInt(sc.nextLine());
 
                 switch (op) {
                     case 1:
-                        System.out.println("\n�Qu� cromo desea a�adir?: ");
+                        System.out.println("\n¿Qué cromo desea añadir?: ");
                         mostrarCromos();
 
                         String nombre = sc.nextLine();
@@ -76,12 +76,12 @@ public class Principal {
 
                         break;
                     case 2:
-                        System.out.println("�Cu�l de tus cromos quieres cambiar?: ");
+                        System.out.println("¿Cuál de tus cromos quieres cambiar?: ");
                         mostrarCromosDeMazo(m1);
                         String nombreCromoParaCambiar = sc.nextLine();
                         Cromo cromoParaCambiar = get(nombreCromoParaCambiar);
 
-                        System.out.println("�Por qu� cromo quieres cambiarlo?: ");
+                        System.out.println("¿Por qué cromo quieres cambiarlo?: ");
                         mostrarCromosDeMazo(m2);
                         String nombreCromoDelOtro = sc.nextLine();
                         Cromo cromoDelOtro = get(nombreCromoDelOtro);
@@ -103,30 +103,30 @@ public class Principal {
                         System.out.println("Actualmente tienes " + m1.contarCromosDistintos() + " cromos diferentes");
                         break;
                     case 5:
-                        System.out.println("�De qu� equipo quieres mostrar los cromos?: ");
+                        System.out.println("¿De qué equipo quieres mostrar los cromos?: ");
                         String equipoMostrar = sc.nextLine();
-                        m1.cromosQueSonDeUnEquipo(equipoMostrar).stream().forEach(System.out::println);
+                        m1.cromosQueSonDeUnEquipo(equipoMostrar).forEach(System.out::println);
                         break;
                     case 6:
-                        System.out.println("�De qu� equipo quieres mostrar la altura media?: ");
+                        System.out.println("¿De qué equipo quieres mostrar la altura media?: ");
                         String equipoAltura = sc.nextLine();
-                        System.out.println(m1.alturaMedia(equipoAltura));
+                        System.out.println(m1.alturaMediaDeUnEquipo(equipoAltura));
                         break;
                     case 7:
-                        m1.getLista().stream().forEach(System.out::println);
+                        m1.cromosSinImportarElOrden().forEach(System.out::println);
                         break;
                     case 8:
-                        m1.ordenar().stream().forEach(System.out::println);
+                        m1.cromosOrdenados().forEach(System.out::println);
                         break;
                     case 9:
-                        m1.equipoCompleto().stream().forEach(System.out::println);
+                        m1.equipoEntero().forEach(System.out::println);
                         break;
                     case 10:
-                        System.out.println("Que tenga un buen d�a.");
+                        System.out.println("Que tenga un buen día.");
                         fin = true;
                         break;
                     default:
-                        System.err.println("Opci�n inv�lida.");
+                        System.err.println("Opción inválida.");
                 }
             } catch (MazoException e) {
                 System.err.println("\n" + e.getMessage());
@@ -139,7 +139,7 @@ public class Principal {
     }
 
     private static String menu() {
-        return "\n(1) A�adir nuevo cromo"
+        return "\n(1) Añadir nuevo cromo"
                 + "\n(2) Intercambiar dos cromos"
                 + "\n(3) Mezclar con otro mazo"
                 + "\n(4) Contar cromos diferentes"
@@ -152,11 +152,11 @@ public class Principal {
     }
 
     private static void mostrarCromos() {
-        todos.stream().map(c -> c.getNombre()).forEach(System.out::println);
+        todos.stream().map(Cromo::getNombre).forEach(System.out::println);
     }
 
     private static void mostrarCromosDeMazo(Mazo m) {
-        m.getLista().forEach(System.out::println);
+        m.cromosSinImportarElOrden().forEach(System.out::println);
     }
 
     /**
@@ -165,6 +165,10 @@ public class Principal {
      * @param nombre el nombre del cromo buscado
      * @return El cromo correspondiente
      */
-    private static Cromo get(String nombre) {
+    private static Cromo get(String nombre) throws MazoException {
+        return todos.stream()
+                .filter(c-> c.getNombre().equalsIgnoreCase(nombre))
+                .findFirst().orElse(null);
+    }
 
     }

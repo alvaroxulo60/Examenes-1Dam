@@ -25,4 +25,13 @@ public abstract class Cromo {
     public int hashCode() {
         return idUnico.hashCode();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Cromo{");
+        sb.append("idUnico='").append(idUnico).append('\'');
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

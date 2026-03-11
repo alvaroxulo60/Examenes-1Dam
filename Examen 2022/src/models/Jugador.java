@@ -2,7 +2,6 @@ package models;
 
 public class Jugador extends Cromo{
 
-    private String nombre;
     private String equipo;
     private double altura;
 
@@ -15,5 +14,18 @@ public class Jugador extends Cromo{
 
     public String getEquipo() {
         return equipo;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Jugador{");
+        sb.append("equipo='").append(equipo).append('\'');
+        sb.append(", altura=").append(altura);
+        sb.append('}');
+        return sb.toString();
     }
 }
