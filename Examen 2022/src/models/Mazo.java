@@ -54,8 +54,10 @@ public class Mazo {
 
     public double alturaMediaDeUnEquipo(String equipo) throws MazoException {
         return getCromos().keySet().stream().filter(c -> c instanceof Jugador)
-                .map(cromo -> (Jugador) cromo).filter(j -> j.getEquipo().equalsIgnoreCase(equipo))
-                .mapToDouble(Jugador::getAltura).average().orElseThrow(() -> new MazoException("No se puede calcular la media"));
+                .map(cromo -> (Jugador) cromo)
+                .filter(j -> j.getEquipo().equalsIgnoreCase(equipo))
+                .mapToDouble(Jugador::getAltura)
+                .average().orElseThrow(() -> new MazoException("No se puede calcular la media"));
     }
 
     public List<Cromo> cromosSinImportarElOrden() {
@@ -72,10 +74,7 @@ public class Mazo {
                         return 1;
                     }
 
-                    String n1 = (c1 instanceof Escudo) ? c1.getNombre() : ((Jugador) c1).getNombre();
-                    String n2 = (c2 instanceof Escudo) ? c2.getNombre() : ((Jugador) c2).getNombre();
-
-                    return n1.compareToIgnoreCase(n2);
+                    return c1.getNombre().compareToIgnoreCase(c2.getNombre());
                 }
         ).toList();
     }
@@ -83,22 +82,22 @@ public class Mazo {
     public List<String> equipoEntero() throws MazoException {
         List<Jugador> jugadores = new ArrayList<>(getCromos().keySet().stream().filter(c -> c instanceof Jugador).map(c -> (Jugador) c).toList());
         List<Escudo> escudos = new ArrayList<>(getCromos().keySet().stream().filter(c -> c instanceof Escudo).map(c -> (Escudo) c).toList());
-        List<String> equipo = new ArrayList<>();
+        List<String> equipos = new ArrayList<>();
 
        for (Escudo e: escudos){
            Long numJugadores = jugadores.stream().filter(j-> j.getEquipo().equalsIgnoreCase(e.getNombre())).count();
 
            if (numJugadores == e.getNumeroDeJugadores()){
-               equipo.add(e.getNombre());
-               equipo.addAll(jugadores.stream().filter(j->j.getEquipo().equalsIgnoreCase(e.getNombre()))
+               equipos.add(e.getNombre());
+               equipos.addAll(jugadores.stream().filter(j->j.getEquipo().equalsIgnoreCase(e.getNombre()))
                        .map(Jugador::getNombre).toList());
            }
        }
 
 
-        if (equipo.isEmpty()) {
+        if (equipos.isEmpty()) {
             throw new MazoException("bjbdjbfasdjb");
         }
-        return equipo;
+        return equipos;
     }
 }
