@@ -73,7 +73,6 @@ public class Mazo {
                     if (c1 instanceof Jugador && c2 instanceof Escudo) {
                         return 1;
                     }
-
                     return c1.getNombre().compareToIgnoreCase(c2.getNombre());
                 }
         ).toList();
@@ -84,15 +83,15 @@ public class Mazo {
         List<Escudo> escudos = new ArrayList<>(getCromos().keySet().stream().filter(c -> c instanceof Escudo).map(c -> (Escudo) c).toList());
         List<String> equipos = new ArrayList<>();
 
-       for (Escudo e: escudos){
-           Long numJugadores = jugadores.stream().filter(j-> j.getEquipo().equalsIgnoreCase(e.getNombre())).count();
+        for (Escudo e : escudos) {
+            long numJugadores = jugadores.stream().filter(j -> j.getEquipo().equalsIgnoreCase(e.getNombre())).count();
 
-           if (numJugadores == e.getNumeroDeJugadores()){
-               equipos.add(e.getNombre());
-               equipos.addAll(jugadores.stream().filter(j->j.getEquipo().equalsIgnoreCase(e.getNombre()))
-                       .map(Jugador::getNombre).toList());
-           }
-       }
+            if (numJugadores == e.getNumeroDeJugadores()) {
+                equipos.add(e.getNombre());
+                equipos.addAll(jugadores.stream().filter(j -> j.getEquipo().equalsIgnoreCase(e.getNombre()))
+                        .map(Jugador::getNombre).toList());
+            }
+        }
 
 
         if (equipos.isEmpty()) {
