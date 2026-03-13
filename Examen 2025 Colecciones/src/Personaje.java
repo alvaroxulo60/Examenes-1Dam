@@ -10,7 +10,6 @@ public class Personaje {
     private int vida;
     private int ki;
     private List<Ataque> ataques;
-    private boolean muerto;
 
 
     public Personaje(String nombre, TRaza raza, int VIDA_MAX, int vida, int KI_MAX, int ki) {
@@ -21,35 +20,36 @@ public class Personaje {
         this.KI_MAX = KI_MAX;
         this.ki = ki;
         ataques = new LinkedList<>();
-        muerto = false;
     }
 
-    public void addAtaque(Ataque ataque){
+    public void addAtaque(Ataque ataque) {
         ataques.add(ataque);
     }
 
-    public void recibirDaño(int daño){
-        if (vida - daño <= 0){
-            muerto = true;
+    public void recibirDaño(int daño) {
+        if (daño > vida) {
             vida = 0;
-        }
-        else {
+        } else {
             vida -= daño;
         }
     }
 
-    public void restarKi(int modificacionKi){
-        if (ki -modificacionKi <= 0){
+    public void restarKi(int modificacionKi) {
+        if (ki - modificacionKi <= 0) {
             ki = 0;
         } else {
             ki -= modificacionKi;
         }
     }
 
-    public void eliminarAtaque(Ataque a){
-        ataques.remove(a);
+    public Ataque buscarMejorAtaque(String nombre) throws DBException {
+        return ataques.stream().filter(a -> a.getNombre().equalsIgnoreCase(nombre))
+                .filter(a -> a.getKI_NECESARIO() <= this.ki).max(Ataque::compareTo).orElseThrow(() -> new DBException("Moises friki 3.5"));
     }
 
+    public void eliminarAtaque(Ataque a) {
+        ataques.remove(a);
+    }
 
 
     public int getVida() {
@@ -73,10 +73,10 @@ public class Personaje {
     }
 
     public boolean isMuerto() {
-        return muerto;
+        return vida == 0;
     }
 
-    public int getNumeroAtaques(){
+    public int getNumeroAtaques() {
         return ataques.size();
     }
 
@@ -88,7 +88,6 @@ public class Personaje {
         sb.append(", vida=").append(vida);
         sb.append(", ki=").append(ki);
         sb.append(", ataques=").append(ataques);
-        sb.append(", muerto=").append(muerto);
         sb.append('}');
         return sb.toString();
     }

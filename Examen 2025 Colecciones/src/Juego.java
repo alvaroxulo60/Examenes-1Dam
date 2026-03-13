@@ -19,7 +19,7 @@ public class Juego {
             juego.personajeConMasAtaques();
             System.out.println();
             System.out.println("Personaje(s) con el ataque más poderoso:");
-            //juego.personajeConAtaqueMasPoderoso();
+            juego.personajeConAtaqueMasPoderoso();
             System.out.println();
             System.out.println("Ataques ordenados por nombre");
             juego.todosLosAtaquesOrdenadosNombre();
@@ -66,6 +66,7 @@ public class Juego {
             System.out.println(e.getMessage());
         }
     }
+
 
     public static void crearPersonajes(Juego juego) throws DBException {
         Personaje goku = new Personaje("Goku", TRaza.SAIYAN, 100, 100, 100, 10);
@@ -151,21 +152,21 @@ public class Juego {
 
     public void todosLosAtaquesOrdenadosNombre() {
         personajes.stream().flatMap(p -> p.getAtaques().stream())
+                .distinct()
                 .sorted((a1, a2) -> a1.getNombre().compareToIgnoreCase(a2.getNombre())).forEach(System.out::println);
     }
 
     public void todosLosAtaquesOrdenadosDamage() {
         personajes.stream().flatMap(p -> p.getAtaques().stream())
-                .sorted().forEach(System.out::println);
+                .sorted((a1, a2) -> a2.getDAÑO() - a1.getDAÑO()).forEach(System.out::println);
     }
 
     public Ataque ataqueMasDañino(Personaje p1, Personaje p2) throws DBException {
-        if (p1.isMuerto() && p1.getKi() < 0) {
+        if (p1.isMuerto() || p1.getKi() < 0) {
             throw new DBException("Este personaje esta muerto o no tiene el ki suficiente para atacar");
         }
         return p1.getAtaques().stream().filter(a -> a.getKI_NECESARIO() <= p1.getKi())
-                .filter(a -> a.getDAÑO() > 0)
-                .max(Ataque::compareTo).orElse(null);
+                .max(Ataque::compareTo).orElseThrow(() -> new DBException("Moises friki 3"));
     }
 
     public void atacar(Personaje p1, Personaje p2, String ataque) throws DBException {
@@ -176,26 +177,19 @@ public class Juego {
             throw new DBException("No puedes atacar a un personaje muerto");
         }
 
-        int dañoMax = p1.getAtaques().stream().filter(a-> a.getNombre().equalsIgnoreCase(ataque)).mapToInt(Ataque::getDAÑO).max().orElse(0);
-
-        Ataque ataque1 = p1.getAtaques().stream().filter(a-> a.getNombre().equalsIgnoreCase(ataque))
-                .filter(a-> a.getDAÑO() == dañoMax)
-                .findFirst().orElseThrow(() -> new DBException("No se encuentra el ataque"));
+        Ataque ataque1 = p1.buscarMejorAtaque(ataque);
 
 
-        if (ataque1.getKI_NECESARIO() <=p1.getKi()){
-            p1.restarKi(ataque1.getKI_NECESARIO());
-            p2.recibirDaño(ataque1.getDAÑO());
-            p1.eliminarAtaque(ataque1);
-            if (p2.isMuerto()){
-                System.out.println(p2.getNombre() + " esta muerto");
-            }else {
-                System.out.println("A "+ p2.getNombre()+ " le quedan "+ p2.getVida());
-            }
+        p1.restarKi(ataque1.getKI_NECESARIO());
+        p2.recibirDaño(ataque1.getDAÑO());
+        p1.eliminarAtaque(ataque1);
+
+        if (p2.isMuerto()) {
+            System.out.println(p2.getNombre() + " esta muerto");
+        } else {
+            System.out.println("A " + p2.getNombre() + " le quedan " + p2.getVida());
         }
-        else {
-            throw new DBException("No puede lanzar ese ataque, no tiene el suficiente ki");
-        }
+
 
     }
 
@@ -206,11 +200,19 @@ public class Juego {
     }
 
     public Map<TRaza, List<Personaje>> devuelveMapaRazas() {
-        Map<TRaza,List<Personaje>> mapaDeRazas = new HashMap<>();
-        for (TRaza raza : TRaza.values()){
-            mapaDeRazas.put(raza, personajes.stream().filter(p-> p.getRaza() == raza).toList());
+        Map<TRaza, List<Personaje>> mapaDeRazas = new HashMap<>();
+        for (TRaza raza : TRaza.values()) {
+            mapaDeRazas.put(raza, personajes.stream().filter(p -> p.getRaza() == raza).toList());
         }
         return mapaDeRazas;
     }
 
+    private void personajeConAtaqueMasPoderoso() throws DBException {
+        Ataque ataqueMasPoderoso = personajes.stream().flatMap(p -> p.getAtaques().stream())
+                .max(Ataque::compareTo).orElseThrow(() -> new DBException("Moises friki"));
+
+        System.out.println(personajes.stream().filter(a -> a.getAtaques().stream()
+                        .anyMatch(at -> at.equals(ataqueMasPoderoso)))
+                .findFirst().orElseThrow(() -> new DBException("Moises friki 2")));
+    }
 }

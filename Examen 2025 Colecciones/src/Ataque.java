@@ -39,7 +39,6 @@ public class Ataque implements Comparable<Ataque> {
     }
 
 
-
     public int getDAÑO() {
         return DAÑO;
     }
@@ -50,7 +49,7 @@ public class Ataque implements Comparable<Ataque> {
 
     @Override
     public int compareTo(Ataque o) {
-        return this.DAÑO -o.DAÑO;
+        return this.DAÑO - o.DAÑO;
     }
 
     @Override
