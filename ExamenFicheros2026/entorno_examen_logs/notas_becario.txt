@@ -1,0 +1,2 @@
+Este es un fichero de prueba que el alumno debe ignorar.
+Si el programa procesa esto, fallará la expresión regular.

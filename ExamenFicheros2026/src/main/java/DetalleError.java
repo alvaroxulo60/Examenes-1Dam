@@ -1,0 +1,1 @@
+public record DetalleError(String server, String aplicacion, String fecha, String hora, String descripcion) {}

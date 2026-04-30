@@ -1,0 +1,194 @@
+{
+  "total_errores_encontrados": 27,
+  "detalles": [
+    {
+      "server": "server3",
+      "aplicacion": "app2",
+      "fecha": "08-11-2024",
+      "hora": "08:03:45",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server3",
+      "aplicacion": "app2",
+      "fecha": "08-11-2024",
+      "hora": "08:09:17",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server3",
+      "aplicacion": "app2",
+      "fecha": "08-11-2024",
+      "hora": "08:10:20",
+      "descripcion": "Error "
+    },
+    {
+      "server": "server3",
+      "aplicacion": "app2",
+      "fecha": "08-11-2024",
+      "hora": "08:18:30",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server2",
+      "aplicacion": "app1",
+      "fecha": "2024/11/19",
+      "hora": "08:19:29",
+      "descripcion": "Timeout en la conexion a BD."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:03:11",
+      "descripcion": "Disco lleno al intentar escribir."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:16:51",
+      "descripcion": "Error "
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:19:50",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:30:21",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:45:08",
+      "descripcion": "Error "
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "08:52:04",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app2",
+      "fecha": "04-11-2024",
+      "hora": "09:00:18",
+      "descripcion": "Token JWT expirado o invalido."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:11:10",
+      "descripcion": "Timeout en la conexion a BD."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:12:28",
+      "descripcion": "Fallo al autenticar usuario."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:15:20",
+      "descripcion": "Memoria insuficiente."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:16:56",
+      "descripcion": "Memoria insuficiente."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:18:22",
+      "descripcion": "Timeout en la conexion a BD."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:21:32",
+      "descripcion": "Fallo al autenticar usuario."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:22:43",
+      "descripcion": "No se encuentra el archivo de configuracion."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:27:23",
+      "descripcion": "No se encuentra el archivo de configuracion."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:29:14",
+      "descripcion": "Memoria insuficiente."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:30:42",
+      "descripcion": "Timeout en la conexion a BD."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:35:17",
+      "descripcion": "No se encuentra el archivo de configuracion."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:36:10",
+      "descripcion": "Memoria insuficiente."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:41:47",
+      "descripcion": "No se encuentra el archivo de configuracion."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:44:05",
+      "descripcion": "Timeout en la conexion a BD."
+    },
+    {
+      "server": "server1",
+      "aplicacion": "app1",
+      "fecha": "2024/11/20",
+      "hora": "08:53:05",
+      "descripcion": "Memoria insuficiente."
+    }
+  ]
+}
